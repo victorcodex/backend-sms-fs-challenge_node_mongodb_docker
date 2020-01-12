@@ -7,10 +7,9 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "start": "node index",
+    "start": "node index.js",
     "start.dev": "nodemon -L",
-    "test": "nyc mocha --timeout=10000 --exit",
-    "dropdb": "mongo localhost:27017/sms_fs_challenge --eval 'printjson(db.dropDatabase())'"
+    "test": "nodemon --exec nyc mocha --timeout=12000 --exit"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
@@ -27,8 +26,10 @@
     "express-winston": "^4.0.2",
     "mocha": "^7.0.0",
     "nodemon": "^1.14.12",
+    "nyc": "^15.0.0",
     "sinon": "^8.0.4",
     "sinon-mongoose": "^2.3.0",
+    "supertest": "^4.0.2",
     "winston": "^3.2.1"
   }
 }

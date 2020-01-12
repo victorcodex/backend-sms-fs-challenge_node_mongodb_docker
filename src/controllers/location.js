@@ -1,5 +1,5 @@
 const { logger } = require('./../config/config')
-const Location = require('./../models/location.model')
+const Location = require('./../models/Location')
 const { CURRENT_DATE, PAGINATION_OPTIONS } = require('./../config/constants')
 
 /**

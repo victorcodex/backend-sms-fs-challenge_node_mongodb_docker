@@ -16,6 +16,9 @@ tmp
 # Optional npm cache directory
 .npm
 
+#Build
+.nyc_output/*
+
 #Libraries from npm packages
 public/js/lib/bootstrap.min*
 public/js/lib/jquery.min*

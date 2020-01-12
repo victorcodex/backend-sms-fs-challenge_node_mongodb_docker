@@ -20,7 +20,7 @@ mongoose.set('useCreateIndex', true)
 mongoose.set('useNewUrlParser', true)
 mongoose.set('useUnifiedTopology', true)
 mongoose.connect(MONGODB_URI)
-mongoose.connection.on('error', (err) => {
+mongoose.connection.on('error', err => {
   logger.error(`MongoDB connection error - ${err} :: ${CURRENT_DATE}`)
 })
 
@@ -50,4 +50,6 @@ Router(app);
 app.listen(PORT, () => {
   logger.info(`App is running at http://localhost:${PORT} :: ${CURRENT_DATE}`)
 })
+
+module.exports = app
 

@@ -1,7 +1,7 @@
-const mongoose = require('mongoose');
-const mongoosePaginate = require('mongoose-paginate-v2');
-const Schema = mongoose.Schema;
-const { LOCATION_STATUS_ENUM } = require('./../config/constants');
+const mongoose = require('mongoose')
+const mongoosePaginate = require('mongoose-paginate-v2')
+const Schema = mongoose.Schema
+const { LOCATION_STATUS_ENUM } = require('./../config/constants')
 
 const LocationSchema = new Schema({
     id: {
@@ -30,10 +30,10 @@ const LocationSchema = new Schema({
     }
 },{ 
   timestamps: { createdAt: true, updatedAt: true }
-});
+})
 
-LocationSchema.plugin(mongoosePaginate);
+LocationSchema.plugin(mongoosePaginate)
 
-const Location = mongoose.model('Location', LocationSchema);
+const Location = mongoose.model('Location', LocationSchema)
 
-module.exports = Location;
+module.exports = Location
