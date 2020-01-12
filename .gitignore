@@ -22,7 +22,7 @@ public/js/lib/jquery.min*
 public/js/lib/popper.min*
 
 # API keys and secrets
-.env
+# .env
 
 # Dependency directory
 node_modules
