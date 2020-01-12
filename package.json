@@ -27,7 +27,7 @@
     "mocha": "^7.0.0",
     "nodemon": "^1.14.12",
     "nyc": "^15.0.0",
-    "sinon": "^8.0.4",
+    "sinon": "^6.3.5",
     "sinon-mongoose": "^2.3.0",
     "supertest": "^4.0.2",
     "winston": "^3.2.1"

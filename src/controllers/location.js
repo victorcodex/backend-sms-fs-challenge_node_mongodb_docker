@@ -7,13 +7,16 @@ const { CURRENT_DATE, PAGINATION_OPTIONS } = require('./../config/constants')
  * Add location
  */
 exports.create = (req, res, next) => {
-	logger.info(`About to add location :: ${CURRENT_DATE}`)
-	const newSingleLocation = Location({ city: 'Berlin' })
-	newSingleLocation.save(function (err) {
-		if (err) return logger.error(`${err} :: ${CURRENT_DATE}`)
-		logger.info(`Successfully added location :: ${CURRENT_DATE}`)
-		res.send('Successfully added location')
-	});
+	
+	logger.info(req.body.status)
+	res.send('Successfully added location')
+// 	logger.info(`About to add location :: ${CURRENT_DATE}`)
+// 	const newSingleLocation = Location({ city: 'Berlin' })
+// 	newSingleLocation.save(function (err) {
+// 		if (err) return logger.error(`${err} :: ${CURRENT_DATE}`)
+// 		logger.info(`Successfully added location :: ${CURRENT_DATE}`)
+// 		res.send('Successfully added location')
+// 	});
 }
 
 /**
