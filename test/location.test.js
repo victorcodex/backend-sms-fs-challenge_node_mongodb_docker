@@ -5,14 +5,7 @@ const request = require('supertest')
 const assert = require('assert')
 const app = require('../index.js')
 const Location = require('./../src/models/Location')
-
-const mockData = {
-	city: 'Dusseldorf',
-	start_date: '9/16/2012',
-	end_date: '8/19/2013',
-	price: '17.40',
-	color: '#819a11'
-}
+const { LOCATION_MOCK_DATA : mockData } = require('./../src/config/constants')
 
 describe('Location', () => {
 
@@ -90,10 +83,25 @@ describe('Location', () => {
 			})
 		})
 
-		// it('should return all locations', async () => {
-		// 	const res = await request(app).get("/locations")
-		// 	assert(res.body.docs.length > 0)
-  //      	})
+		it('should remove location by city', done => {
+			const LocationMock = sinon.mock(Location)
+			const expectedResult = {
+			  nRemoved: 1,
+			}
+
+			LocationMock
+			  .expects('remove')
+			  .withArgs({ city: mockData.city })
+			  .yields(null, expectedResult)
+
+			Location.remove({ city: mockData.city }, (err, result) => {
+			  LocationMock.verify()
+			  LocationMock.restore()
+			  expect(err).to.be.null
+			  expect(result.nRemoved).to.equal(1)
+			  done()
+			})
+		})
 
   	})
 
