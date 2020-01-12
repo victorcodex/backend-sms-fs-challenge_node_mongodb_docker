@@ -21,9 +21,9 @@ GET: `http://localhost:3000/locations`
 
 GET: `http://localhost:3000/location/5e1b63a38a7195001bce5db5`
 
-POST: `http://localhost:3000/location/create`
+PUT: `http://localhost:3000/location/5e1b63a38a7195001bce5db5`
 
-POST: `http://localhost:3000/location/create`
+DELETE: `http://localhost:3000/location/5e1b63a38a7195001bce5db5`
 
 
 NOTE: Import the postman collection `node_mongo_docker.postman_collection.json` on the root directory to see the samples CRUD requests

@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "http://localhost:3000/locations/create",
+			"name": "http://localhost:3000/location/create",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -111,6 +111,42 @@
 					"path": [
 						"location",
 						"5e1b63b78a7195001bce5db6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/location/5e1b63b78a7195001bce5db6",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"city\": \"Frankfurt - updated\",\n\t\"start_date\": \"9/16/2012\",\n\t\"end_date\": \"8/19/2013\",\n\t\"price\": \"17.40\",\n\t\"status\": \"Once\",\n\t\"color\" : \"#819a11\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/location/5e1b659ba1ee8a00932ae85c",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"location",
+						"5e1b659ba1ee8a00932ae85c"
 					]
 				}
 			},
