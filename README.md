@@ -13,6 +13,10 @@ Run `docker-compose up --build`.
 Sever should be running on `http://localhost:3000`
 
 
+## How to run tests
+Run `npm run test`
+
+
 ## Routes
 
 POST: `http://localhost:3000/location/create`
