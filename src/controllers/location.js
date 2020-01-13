@@ -22,8 +22,8 @@ exports.create = (req, res, next) => {
  * Get many locations
  */
 exports.find = (req, res, next) => {
-	// PAGINATION_OPTIONS.page = 1
-	// PAGINATION_OPTIONS.limit = 10
+	PAGINATION_OPTIONS.page = req.query.page || PAGINATION_OPTIONS.page
+	PAGINATION_OPTIONS.limit = req.query.limit || PAGINATION_OPTIONS.limit
 	logger.info(`${formatResponseAboutTo('fetch', 'locations')} :: ${CURRENT_DATE}`)
 	Location.paginate({}, PAGINATION_OPTIONS, (err, result) => {
 		if (err) return logger.error(`${err} :: ${CURRENT_DATE}`)
