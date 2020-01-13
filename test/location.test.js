@@ -2,10 +2,10 @@ const sinon = require('sinon')
 require('sinon-mongoose')
 const { expect } = require('chai')
 const request = require('supertest')
-const assert = require('assert')
 const app = require('../index.js')
 const { LOCATION_MOCK_DATA : mockData } = require('./../src/config/constants')
 const Location = require('./../src/models/Location')
+
 
 /**
  * Location module tests
@@ -14,18 +14,66 @@ describe('Location Module Unit Test', () => {
 
 	// Routes
 	describe('Location Routes', () => {
-		it('/locations should return 200 OK', (done) => {
+
+		it('POST /location/create should return 200 OK', done => {
+			request(app)
+				.post('/location/create')
+				.send(mockData)
+				.set('Accept', 'application/json')
+				.expect('Content-Type','text/html; charset=utf-8')
+				.expect(200)
+				.end( (err, res) => { 
+					if (err) return done(err)
+                	done()
+				})
+		})
+
+		it('GET /locations should return 200 OK', done => {
 			request(app)
 				.get('/locations')
 				.expect(200, done)
 		})
+
+		it('GET /location/:id should return 200 OK', done => {
+			request(app)
+				.get('/location/5700a128bd97c1341d8fb365')
+				.expect(200, done)
+		})
+
+		// it('PUT /location/:id should return 200 OK', done => {
+		// 	request(app)
+		// 		.put('/location/5e1b63b78a7195001bce5db6')
+		// 		.send(mockData)
+		// 		.set('Accept', 'application/json')
+		// 		.expect('Content-Type', /json/)
+		// 		.expect(200)
+		// 		.end( (err, res) => {
+		// 			console.log("Hello world PUT ", res.body) 
+		// 			if (err) return done(err)
+        //         	done()
+		// 		})
+		// })
+
+		it('DELETE /location/:id should return 200 OK', done => {
+			request(app)
+				.delete('/location/5700a128bd97c1341d8fb365')
+				.send(mockData)
+				.set('Accept', 'application/json')
+				.expect('Content-Type', /json/)
+				.expect(200)
+				.end( (err, res) => { 
+					if (err) return done(err)
+                	done()
+				})
+		})
+
 	})
 
 	// Models
 	describe('Location Models', () => {
 
 		// Create new location
-		describe("Create new location", () => {
+		describe("Create location", () => {
 
 			it('should fail to create new location if city is not provided - Validation', done => {
 				const location = new Location()
@@ -66,7 +114,7 @@ describe('Location Module Unit Test', () => {
 		})
 
 		// Fetch locations
-		describe("Fetch all locations", () => {
+		describe("Fetch locations", () => {
 
 			it('should find location by city', done => {
 				const LocationMock = sinon.mock(Location)
@@ -101,7 +149,7 @@ describe('Location Module Unit Test', () => {
 				const expectedResult = {
 					status: true, 
 					location: []
-					}
+				}
 				LocationMock.expects('find').yields(null, expectedResult)
 				Location.find((err, result) => {
 					LocationMock.verify()
@@ -116,7 +164,7 @@ describe('Location Module Unit Test', () => {
 				const expectedResult = {
 					status: false, 
 					error: "Oops, Something went wrong"
-					}
+				}
 				LocationMock.expects('find').yields(expectedResult, null)
 				Location.find((err, result) => {
 					LocationMock.verify()
@@ -131,34 +179,19 @@ describe('Location Module Unit Test', () => {
 		// Update location
 		describe("Update existing location by _id", () => {
 
-			it("should updated a location by _id", done => {
-			  const LocationMock = sinon.mock(new Location(mockData))
-			  const location = LocationMock.object
-			  const expectedResult = { 
-				  status: true 
-			  }
-			  LocationMock.expects('save').withArgs({_id: 12345}).yields(null, expectedResult)
-			  location.save((err, result) => {
-				LocationMock.verify()
-				LocationMock.restore()
-				expect(result.status).to.be.true
-				done()
-			  })
-			})
-			
-			it("should return error if update action is failed", done => {
-			  const LocationMock = sinon.mock(new Location(mockData))
-			  const location = LocationMock.object
-			  const expectedResult = { 
-				  status: false 
-			  }
-			  LocationMock.expects('save').withArgs({_id: 12345}).yields(expectedResult, null)
-			  location.save((err, result) => {
-				LocationMock.verify()
-				LocationMock.restore()
-				expect(err.status).to.not.be.true
-				done()
-			  })
+			it('should update a location by _id', done => {
+      
+				var LocationMock = sinon.mock(new Location(mockData))
+				var location = LocationMock.object
+				const expectedLocation = {
+					_id: '5700a128bd97c1341d8fb365'
+				}
+				LocationMock.expects('save').withArgs(expectedLocation).yields(null, location)
+				location.save(expectedLocation, (err, result) => {
+				  LocationMock.verify()
+				  LocationMock.restore()
+				  done()
+				})        
 			})
 
 		})
@@ -191,51 +224,6 @@ describe('Location Module Unit Test', () => {
 			})
 
 		})
-
-
-		// describe('Location model', () => {
-
-		// 	it('should find location by city', (done) => {
-		// 		const LocationMock = sinon.mock(Location)
-		// 		const expectedLocation = {
-		// 		_id: '5700a128bd97c1341d8fb365',
-		// 		city: mockData.city,
-		// 		}
-
-		// 		LocationMock
-		// 		.expects('findOne')
-		// 		.withArgs({ city: mockData.city })
-		// 		.yields(null, expectedLocation)
-
-		// 		Location.findOne({ city: mockData.city }, (err, result) => {
-		// 		LocationMock.verify()
-		// 		LocationMock.restore()
-		// 		expect(result.city).to.equal(mockData.city)
-		// 		done()
-		// 		})
-		// 	})
-
-		// 	it('should remove location by city', done => {
-		// 		const LocationMock = sinon.mock(Location)
-		// 		const expectedResult = {
-		// 		nRemoved: 1,
-		// 		}
-
-		// 		LocationMock
-		// 		.expects('remove')
-		// 		.withArgs({ city: mockData.city })
-		// 		.yields(null, expectedResult)
-
-		// 		Location.remove({ city: mockData.city }, (err, result) => {
-		// 		LocationMock.verify()
-		// 		LocationMock.restore()
-		// 		expect(err).to.be.null
-		// 		expect(result.nRemoved).to.equal(1)
-		// 		done()
-		// 		})
-		// 	})
-
-		// })
 
 	})
 

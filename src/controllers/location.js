@@ -4,7 +4,7 @@ const { CURRENT_DATE, PAGINATION_OPTIONS } = require('./../config/constants')
 const { formatResponseSuccess, formatResponseAboutTo } = require('./../config/helpers')
 
 /**
- * POST /locations/create
+ * POST /location/create
  * Add location
  */
 exports.create = (req, res, next) => {
@@ -33,7 +33,7 @@ exports.find = (req, res, next) => {
 }
 
 /**
- * GET /locations/:id
+ * GET /location/:id
  * Get one location
  */
 exports.findOne = (req, res, next) => {
@@ -46,7 +46,7 @@ exports.findOne = (req, res, next) => {
 }
 
 /**
- * PUT /locations/:id
+ * PUT /location/:id
  * Update location
  */
 exports.update = (req, res, next) => {
@@ -68,12 +68,12 @@ exports.update = (req, res, next) => {
 }
 
 /**
- * DELETE /locations/:id
+ * DELETE /location/:id
  * Delete location
  */
 exports.destroy = (req, res, next) => {
 	logger.info(`${formatResponseAboutTo('delete', 'location')} :: ${CURRENT_DATE}`)
-	Location.remove({_id : req.params.id}, (err, result) => {
+	Location.deleteOne({_id : req.params.id}, (err, result) => {
 		if (err) return logger.error(`${err} :: ${CURRENT_DATE}`)
 		logger.info(`Successfully deleted location :: ${CURRENT_DATE}`)
 		res.json({ message: "Successfully deleted location", result })
