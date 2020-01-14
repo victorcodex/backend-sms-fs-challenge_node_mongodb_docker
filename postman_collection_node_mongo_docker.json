@@ -47,7 +47,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/locations",
+					"raw": "http://localhost:3000/locations?page=1&limit=10",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -55,6 +55,16 @@
 					"port": "3000",
 					"path": [
 						"locations"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "limit",
+							"value": "10"
+						}
 					]
 				}
 			},
@@ -66,7 +76,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/location/5e1b63a38a7195001bce5db5",
+					"raw": "http://localhost:3000/location/5e1e2cf82dfc37001c722ef8",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -74,7 +84,7 @@
 					"port": "3000",
 					"path": [
 						"location",
-						"5e1b63a38a7195001bce5db5"
+						"5e1e2cf82dfc37001c722ef8"
 					]
 				}
 			},
@@ -102,7 +112,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/location/5e1b63b78a7195001bce5db6",
+					"raw": "http://localhost:3000/location/5e1e2cf82dfc37001c722ef8",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -110,7 +120,7 @@
 					"port": "3000",
 					"path": [
 						"location",
-						"5e1b63b78a7195001bce5db6"
+						"5e1e2cf82dfc37001c722ef8"
 					]
 				}
 			},
@@ -130,7 +140,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"city\": \"Frankfurt - updated\",\n\t\"start_date\": \"9/16/2012\",\n\t\"end_date\": \"8/19/2013\",\n\t\"price\": \"17.40\",\n\t\"status\": \"Once\",\n\t\"color\" : \"#819a11\"\n}",
+					"raw": "{\n\t\"city\": \"Frankfurt - updated 2\",\n\t\"start_date\": \"9/16/2012\",\n\t\"end_date\": \"8/19/2013\",\n\t\"price\": \"17.40\",\n\t\"status\": \"Once\",\n\t\"color\" : \"#819a11\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -138,7 +148,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/location/5e1b659ba1ee8a00932ae85c",
+					"raw": "http://localhost:3000/location/5e1e2cf82dfc37001c722ef8",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -146,7 +156,7 @@
 					"port": "3000",
 					"path": [
 						"location",
-						"5e1b659ba1ee8a00932ae85c"
+						"5e1e2cf82dfc37001c722ef8"
 					]
 				}
 			},
