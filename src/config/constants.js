@@ -1,4 +1,5 @@
 const dotenv = require('dotenv')
+const { getLocationSeedDataFromFile } = require('./helpers')
 
 /**
  * Load environment variables from .env file
@@ -14,7 +15,7 @@ const WINSTON_LOG_FILE = 'logfile.log'
 const PAGINATION_OPTIONS = {
     page: 1,
     limit: 10
-};
+}
 const LOCATION_MOCK_DATA = {
 	city: 'Dusseldorf',
 	start_date: '9/16/2012',
@@ -22,6 +23,8 @@ const LOCATION_MOCK_DATA = {
 	price: '17.40',
 	color: '#819a11'
 }
+
+const LOCATION_MODEL_SEED_DATA = getLocationSeedDataFromFile()
 
 module.exports = {
 	PORT,
@@ -32,5 +35,6 @@ module.exports = {
 	WINSTON_LOG_LEVEL,
 	WINSTON_LOG_FILE,
 	PAGINATION_OPTIONS,
-	LOCATION_MOCK_DATA
+	LOCATION_MOCK_DATA,
+	LOCATION_MODEL_SEED_DATA
 }

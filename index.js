@@ -6,6 +6,7 @@ const mongoose = require('mongoose')
 const morgan = require('morgan')
 const { logger } = require('./src/config/config')
 const { PORT, MONGODB_URI, CURRENT_DATE, MORGAN_LOG_LEVEL } = require('./src/config/constants')
+const Location = require('./src/models/Location')
 
 /**
  * Create Express server.
@@ -19,7 +20,10 @@ mongoose.set('useFindAndModify', false)
 mongoose.set('useCreateIndex', true)
 mongoose.set('useNewUrlParser', true)
 mongoose.set('useUnifiedTopology', true)
-mongoose.connect(MONGODB_URI)
+mongoose.connect(MONGODB_URI, () => {
+  logger.info(`About to start seeding locations collection :: ${CURRENT_DATE}`)
+  Location.seedLocationModel(Location) //Initiate Location Model Data seeding
+})
 mongoose.connection.on('error', err => {
   logger.error(`MongoDB connection error - ${err} :: ${CURRENT_DATE}`)
 })
@@ -41,8 +45,8 @@ app.get('/', function(req, res) {
 /**
  * Import Router.
  */
-const Router = require("./src/config/router");
-Router(app);
+const Router = require("./src/config/router")
+Router(app)
 
 /**
  * Start Express server.
