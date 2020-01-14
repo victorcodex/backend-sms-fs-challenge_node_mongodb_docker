@@ -2,20 +2,27 @@ const dotenv = require('dotenv')
 const { getLocationSeedDataFromFile } = require('./helpers')
 
 /**
- * Load environment variables from .env file
+ * General
  */
-dotenv.config({ path: '.env' })
-
+dotenv.config({ path: '.env' }) //Load environment variables from .env file
 const { PORT = '3000', MONGODB_URI } = process.env
-const LOCATION_STATUS_ENUM = ['Daily', 'Weekly', 'Monthly', 'Yearly', 'Seldom', 'Once', 'Often', 'Never']
 const CURRENT_DATE = new Date()
-const MORGAN_LOG_LEVEL = 'dev'
-const WINSTON_LOG_LEVEL = 'info'
-const WINSTON_LOG_FILE = 'logfile.log'
 const PAGINATION_OPTIONS = {
     page: 1,
     limit: 10
 }
+
+/**
+ * Winston related
+ */
+const MORGAN_LOG_LEVEL = 'dev'
+const WINSTON_LOG_LEVEL = 'info'
+const WINSTON_LOG_FILE = 'logfile.log'
+
+/**
+ * Location module related
+ */
+const LOCATION_STATUS_ENUM = ['Daily', 'Weekly', 'Monthly', 'Yearly', 'Seldom', 'Once', 'Often', 'Never']
 const LOCATION_MOCK_DATA = {
 	city: 'Dusseldorf',
 	start_date: '9/16/2012',
@@ -23,8 +30,8 @@ const LOCATION_MOCK_DATA = {
 	price: '17.40',
 	color: '#819a11'
 }
-
 const LOCATION_MODEL_SEED_DATA = getLocationSeedDataFromFile()
+
 
 module.exports = {
 	PORT,
