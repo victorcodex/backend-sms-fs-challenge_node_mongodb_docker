@@ -1,4 +1,4 @@
-const locationController = require('./../controllers/location')
+const locationController = require('./../location/location.controller')
 
 /**
  * Primary app routes.

@@ -6,7 +6,7 @@ const mongoose = require('mongoose')
 const morgan = require('morgan')
 const { logger } = require('./src/config/config')
 const { PORT, MONGODB_URI, CURRENT_DATE, MORGAN_LOG_LEVEL } = require('./src/config/constants')
-const Location = require('./src/models/Location')
+const Location = require('./src/location/location.model')
 
 /**
  * Create Express server.

@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node index.js",
     "start.dev": "nodemon -L",
-    "test": "nodemon --exec nyc mocha --timeout=12000 --exit"
+    "test": "nodemon --exec nyc mocha 'src/**/*.test.js' --timeout=12000 --exit"
   },
   "dependencies": {
     "body-parser": "^1.19.0",

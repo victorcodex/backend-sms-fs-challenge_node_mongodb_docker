@@ -38,7 +38,7 @@ const LocationSchema = new Schema({
 
 /**
  * Seed location data to MongoDB.
- * When this method is called, it will reset the DB collection with the Seed data (data.json)
+ * When this method is called, it will reset the DB locations collection with the Seed data from (data.json)
  */
 LocationSchema.statics.seedLocationModel = Location => {
     Location.deleteMany({}, err => {

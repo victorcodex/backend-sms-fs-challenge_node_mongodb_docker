@@ -1,5 +1,5 @@
 const { logger } = require('./../config/config')
-const Location = require('./../models/Location')
+const Location = require('./location.model')
 const { CURRENT_DATE, PAGINATION_OPTIONS } = require('./../config/constants')
 const { formatResponseSuccess, formatResponseAboutTo } = require('./../config/helpers')
 
@@ -27,7 +27,7 @@ exports.find = (req, res, next) => {
 	logger.info(`${formatResponseAboutTo('fetch', 'locations')} :: ${CURRENT_DATE}`)
 	Location.paginate({}, PAGINATION_OPTIONS, (err, result) => {
 		if (err) return logger.error(`${err} :: ${CURRENT_DATE}`)
-		logger.info(`Successfully fetched location :: ${CURRENT_DATE}`)
+		logger.info(`${formatResponseSuccess('fetched', 'locations')}  :: ${CURRENT_DATE}`)
 		res.send(result)
     })
 }
@@ -40,7 +40,7 @@ exports.findOne = (req, res, next) => {
 	logger.info(`${formatResponseAboutTo('fetch', 'location')} :: ${CURRENT_DATE}`)
 	Location.findById(req.params.id, (err, result) => {
 		if (err) return logger.error(`${err} :: ${CURRENT_DATE}`)
-		logger.info(`Successfully fetched location :: ${CURRENT_DATE}`)
+		logger.info(`${formatResponseSuccess('fetched', 'location')}  :: ${CURRENT_DATE}`)
 		res.send(result)
     })   
 }
@@ -61,8 +61,8 @@ exports.update = (req, res, next) => {
             	logger.error(`${err} :: ${CURRENT_DATE}`)
             	res.send(err)
         	}
-        	logger.info(`Successfully updated location :: ${CURRENT_DATE}`)
-            res.json({ message: 'Successfully updated location', result })
+			logger.info(`${formatResponseSuccess('updated', 'location')}  :: ${CURRENT_DATE}`)
+            res.json({ message: formatResponseSuccess('updated', 'location'), result })
         })    
     })
 }
@@ -75,7 +75,7 @@ exports.destroy = (req, res, next) => {
 	logger.info(`${formatResponseAboutTo('delete', 'location')} :: ${CURRENT_DATE}`)
 	Location.deleteOne({_id : req.params.id}, (err, result) => {
 		if (err) return logger.error(`${err} :: ${CURRENT_DATE}`)
-		logger.info(`Successfully deleted location :: ${CURRENT_DATE}`)
-		res.json({ message: "Successfully deleted location", result })
+		logger.info(`${formatResponseSuccess('deleted', 'location')}  :: ${CURRENT_DATE}`)
+		res.json({ message: formatResponseSuccess('deleted', 'location'), result })
     })
 }

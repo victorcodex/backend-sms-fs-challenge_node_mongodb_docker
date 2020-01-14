@@ -2,9 +2,9 @@ const sinon = require('sinon')
 require('sinon-mongoose')
 const { expect } = require('chai')
 const request = require('supertest')
-const app = require('../index.js')
-const { LOCATION_MOCK_DATA : mockData } = require('./../src/config/constants')
-const Location = require('./../src/models/Location')
+const app = require('./../../index')
+const { LOCATION_MOCK_DATA : mockData } = require('./../config/constants')
+const Location = require('./location.model')
 
 
 /**
