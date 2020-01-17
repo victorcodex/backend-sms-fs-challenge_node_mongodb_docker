@@ -36,8 +36,12 @@ describe('Location Module Unit Test', () => {
 
 		it('GET /location/:id should return 200 OK', done => {
 			request(app)
-				.get('/location/5700a128bd97c1341d8fb365')
-				.expect(200, done)
+				.get('/location/5e218454795a038ad5e3da29')
+				.expect(200)
+				.end( (err, res) => { 
+					if (err) return done(err)
+                	done()
+				})
 		})
 
 		// it('PUT /location/:id should return 200 OK', done => {
@@ -48,17 +52,14 @@ describe('Location Module Unit Test', () => {
 		// 		.expect('Content-Type', /json/)
 		// 		.expect(200)
 		// 		.end( (err, res) => {
-		// 			console.log("Hello world PUT ", res.body) 
 		// 			if (err) return done(err)
-        //         	done()
+  //               	done()
 		// 		})
 		// })
 
 		it('DELETE /location/:id should return 200 OK', done => {
 			request(app)
-				.delete('/location/5700a128bd97c1341d8fb365')
-				.send(mockData)
-				.set('Accept', 'application/json')
+				.delete('/location/5e218454795a038ad5e3da29')
 				.expect('Content-Type', /json/)
 				.expect(200)
 				.end( (err, res) => { 
