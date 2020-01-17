@@ -24,7 +24,7 @@ const LocationSchema = new Schema({
     price: {
     	type: String
     },
-    statuss: {
+    status: {
     	type: String,
     	enum : LOCATION_STATUS_ENUM,
         default: 'Daily'
