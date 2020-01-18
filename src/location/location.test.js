@@ -86,7 +86,7 @@ describe('Location Module Unit Test', () => {
         const expectedResult = {
           status: true,
         };
-        LocationMock.expects('save').yields(null, expectedResult);
+        LocationMock.expects('save').yields(expectedResult, null);
         location.save((result) => {
           LocationMock.verify();
           LocationMock.restore();
@@ -194,11 +194,12 @@ describe('Location Module Unit Test', () => {
         const LocationMock = sinon.mock(Location);
         const expectedResult = { status: true };
         LocationMock.expects('remove').withArgs({ _id: 12345 }).yields(null, expectedResult);
-        Location.remove({ _id: 12345 }, (result) => {
+        Location.remove({ _id: 12345 }, (err, result) => {
+          if (err) return done(err);
           LocationMock.verify();
           LocationMock.restore();
           expect(result.status).to.be.true;
-          done();
+          return done();
         });
       });
 

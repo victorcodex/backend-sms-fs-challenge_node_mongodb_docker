@@ -13,7 +13,7 @@ exports.create = (req, res) => {
   newSingleLocation.save((err) => {
     if (err) return logger.error(`${err} :: ${CURRENT_DATE}`);
     logger.info(`${formatResponseSuccess('created', 'location')}  :: ${CURRENT_DATE}`);
-    res.send(`${formatResponseSuccess('created', 'location')}`);
+    return res.send(`${formatResponseSuccess('created', 'location')}`);
   });
 };
 
@@ -28,7 +28,7 @@ exports.find = (req, res) => {
   Location.paginate({}, PAGINATION_OPTIONS, (err, result) => {
     if (err) return logger.error(`${err} :: ${CURRENT_DATE}`);
     logger.info(`${formatResponseSuccess('fetched', 'locations')}  :: ${CURRENT_DATE}`);
-    res.send(result);
+    return res.send(result);
   });
 };
 
@@ -41,7 +41,7 @@ exports.findOne = (req, res) => {
   Location.findById(req.params.id, (err, result) => {
     if (err) return logger.error(`${err} :: ${CURRENT_DATE}`);
     logger.info(`${formatResponseSuccess('fetched', 'location')}  :: ${CURRENT_DATE}`);
-    res.send(result);
+    return res.send(result);
   });
 };
 
@@ -76,6 +76,6 @@ exports.destroy = (req, res) => {
   Location.deleteOne({ _id: req.params.id }, (err, result) => {
     if (err) return logger.error(`${err} :: ${CURRENT_DATE}`);
     logger.info(`${formatResponseSuccess('deleted', 'location')}  :: ${CURRENT_DATE}`);
-    res.json({ message: formatResponseSuccess('deleted', 'location'), result });
+    return res.json({ message: formatResponseSuccess('deleted', 'location'), result });
   });
 };
