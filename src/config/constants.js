@@ -10,6 +10,9 @@ const CURRENT_DATE = new Date();
 const PAGINATION_OPTIONS = {
   page: 1,
   limit: 10,
+  sort: {
+    city: 'asc',
+  },
 };
 
 /**

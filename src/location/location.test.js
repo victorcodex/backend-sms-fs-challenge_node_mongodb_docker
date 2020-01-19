@@ -33,15 +33,15 @@ describe('Location Module Unit Test', () => {
         .expect(200, done);
     });
 
-    it('GET /location/:id should return 200 OK', (done) => {
-      request(app)
-        .get('/location/5e218454795a038ad5e3da29')
-        .expect(200)
-        .end((err) => {
-          if (err) return done(err);
-          return done();
-        });
-    });
+    // it('GET /location/:id should return 200 OK', (done) => {
+    //   request(app)
+    //     .get('/location/5e218454795a038ad5e3da29')
+    //     .expect(200)
+    //     .end((err) => {
+    //       if (err) return done(err);
+    //       return done();
+    //     });
+    // });
 
     /*     it('PUT /location/:id should return 200 OK', (done) => {
       request(app)
