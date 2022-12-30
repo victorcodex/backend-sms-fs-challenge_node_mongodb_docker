@@ -31,7 +31,7 @@
         "express-winston": "^4.0.2",
         "husky": "^4.0.10",
         "lint-staged": "^9.5.0",
-        "mocha": "^7.0.0",
+        "mocha": "^10.2.0",
         "nodemon": "^1.14.12",
         "nyc": "^15.0.0",
         "sinon": "^6.3.5",
